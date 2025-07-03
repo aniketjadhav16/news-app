@@ -28,7 +28,7 @@ function App() {
   const { data, loading, error } = useFetch(`https://newsapi.org/v2/everything?q=${category}&page=${page}&apiKey=${apiKey}`);
 
   if (loading) return <div className='h-screen flex justify-center items-center'><img src={bouncingCircles} alt='bouncing circles' className='w-3xs'></img></div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div className='h-screen flex justify-center items-center'>Error: {error.message}</div>;
 
   const articles = Array.isArray(data)?data:[];
 
