@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Footer from './components/Footer';
 import Headingbar from './components/Headingbar';
 import Navbar from './components/Navbar';
@@ -17,8 +17,14 @@ const categories = [
 
 function App() {
   const [category, setCategory] = useState("top-headlines")
+  const [page, setPage] = useState(1);
+
+  useEffect(()=> {
+    setPage(1);
+  },[category])
+
   const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-  const { data, loading, error } = useFetch(`https://newsapi.org/v2/everything?q=${category}&pageSize=14&apiKey=${apiKey}`);
+  const { data, loading, error } = useFetch(`https://newsapi.org/v2/everything?q=${category}&page=${page}&apiKey=${apiKey}`);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -32,7 +38,26 @@ function App() {
         <HomePage articles={articles.slice(0,4)} />
         <Headingbar />
         <NewsFeed articles={articles.slice(4,14)}/>
-        <Footer />
+        <div className="flex justify-center gap-4 my-10">
+          <button
+            className='px-4 py-2 bg-gray-600 text-white rounded-xl disabled:opacity-35'
+            onClick={()=>{
+              setPage(page - 1)
+              window.scrollTo({top:0, behavior:"smooth"})
+            }}
+            disabled={page === 1}
+          >Previous Page</button>
+          <span className='self-center'>Page {page}</span>
+          <button
+            className='px-4 py-2 bg-gray-600 text-white rounded-xl'
+            onClick={()=>{
+              setPage(page + 1)
+              window.scrollTo({top:0, behavior:"smooth"})
+            }}
+            disabled={articles.length < 14}
+          >Next Page</button>
+        </div>
+        <Footer categories={categories} onCategorySelect={setCategory}/>
       </div>
     </>
   );
