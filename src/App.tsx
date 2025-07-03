@@ -8,7 +8,7 @@ import Layout from './pages/Layout';
 import bouncingCircles from "./assets/bouncing-circles.svg"
 
 const categories = [
-  "general",
+  "top-headlines",
   "technology",
   "business",
   "entertainment",
@@ -17,7 +17,7 @@ const categories = [
 ]
 
 function App() {
-  const [category, setCategory] = useState("general")
+  const [category, setCategory] = useState("top-headlines")
   const [page, setPage] = useState(1);
 
   useEffect(()=> {
@@ -25,7 +25,7 @@ function App() {
   },[category])
 
   const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-  const { data, loading, error } = useFetch(`https://newsapi.org/v2/top-headlines?category=${category}&country=us&page=${page}&pageSize=14&apiKey=${apiKey}`);
+  const { data, loading, error } = useFetch(`https://newsapi.org/v2/everything?q=${category}&page=${page}&apiKey=${apiKey}`);
 
   if (loading) return <div className='h-screen flex justify-center items-center'><img src={bouncingCircles} alt='bouncing circles' className='w-3xs'></img></div>;
   if (error) return <div className='h-screen flex justify-center items-center'>Error: {error.message}</div>;
