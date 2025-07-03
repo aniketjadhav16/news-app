@@ -16,7 +16,7 @@ const categories = [
 ]
 
 function App() {
-  const [category, setCategory] = useState("top-headlines")
+  const [category, setCategory] = useState("technology")
   const [page, setPage] = useState(1);
 
   useEffect(()=> {
