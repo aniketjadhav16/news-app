@@ -8,7 +8,6 @@ import Layout from './pages/Layout';
 import bouncingCircles from "./assets/bouncing-circles.svg"
 
 const categories = [
-  "top-headlines",
   "technology",
   "business",
   "entertainment",
