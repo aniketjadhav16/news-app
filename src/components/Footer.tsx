@@ -6,7 +6,7 @@ type FooterProps = {
     onCategorySelect: (category:string) => void;
 }
 
-export default function Footer<NavbarProps>({categories, onCategorySelect}) {
+export default function Footer({categories, onCategorySelect}: FooterProps) {
     return (
         <div className="flex justify-between bg-black text-white rounded-xl shadow-xl py-10 px-40">
             <div className="flex flex-col gap-5">

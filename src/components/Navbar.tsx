@@ -3,7 +3,7 @@ type NavbarProps = {
     onCategorySelect: (category:string) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({categories, onCategorySelect}) => {
+const Navbar = ({categories, onCategorySelect}:NavbarProps) => {
     return(
         <div className="flex justify-between items-center rounded-xl shadow-xl h-24 px-10 bg-black text-white font-bold">
             <div>

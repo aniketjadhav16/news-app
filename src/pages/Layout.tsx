@@ -1,19 +1,23 @@
 import NewsCard from "../components/NewsCard";
 
 type Article = {
-    title:string
-    url:string
-}
+    url: string;
+    urlToImage?: string;
+    title: string;
+    publishedAt: string;
+    content: string;
+    source: { name: string };
+};
 
-type Props = {
-    articles: Article[] | null;
-}
+type NewsFeedProps = {
+    articles: Article[];
+};
 
-export default function HomePage(props: Props){
-    if (!props.articles) return null;
+export default function HomePage({articles}:NewsFeedProps){
+    if (!articles) return null;
     return (
         <div className="flex flex-wrap justify-between gap-6 my-10">
-            {props.articles.map(article => (
+            {articles.map(article => (
                 <NewsCard key={article.url} article={article} />
             ))}
         </div>

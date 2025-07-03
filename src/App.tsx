@@ -4,7 +4,7 @@ import Headingbar from './components/Headingbar';
 import Navbar from './components/Navbar';
 import NewsFeed from './components/NewsFeed';
 import useFetch from './hooks/useFetch'
-import HomePage from './pages/Layout';
+import Layout from './pages/Layout';
 
 const categories = [
   "top-headlines",
@@ -35,7 +35,7 @@ function App() {
     <>
       <div className='container mx-auto'>
         <Navbar categories={categories} onCategorySelect={setCategory}/>
-        <HomePage articles={articles.slice(0,4)} />
+        <Layout articles={articles.slice(0,4)} />
         <Headingbar />
         <NewsFeed articles={articles.slice(4,14)}/>
         <div className="flex justify-center gap-4 my-10">

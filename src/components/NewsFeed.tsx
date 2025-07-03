@@ -1,23 +1,24 @@
 import NewsContainer from "./NewsContainer";
 
 type Article = {
-    title: string,
-    content: string,
-    publishedAt:string,
-    urlToImage:string,
-    url:string
-}
+    url: string;
+    urlToImage?: string;
+    title: string;
+    publishedAt: string;
+    content: string;
+    source: { name: string };
+};
 
-type Props = {
-    articles: Article[] | null;
-}
+type NewsFeedProps = {
+    articles: Article[];
+};
 
-export default function NewsFeed(props:Props) {
-    if (!props.articles) return null;
+export default function NewsFeed({articles}:NewsFeedProps) {
+    if (!articles) return null;
     return(
         <div className="flex flex-col flex-wrap gap-10 my-10">
             {
-                props.articles.map(article => (
+                articles.map(article => (
                     <NewsContainer key={article.url} article={article}/>
                 ))
             }
