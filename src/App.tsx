@@ -25,6 +25,7 @@ function App() {
   },[category])
 
   const apiKey = import.meta.env.VITE_NEWS_API_KEY;
+  console.log(apiKey);
   const { data, loading, error } = useFetch(`https://newsapi.org/v2/everything?q=${category}&page=${page}&apiKey=${apiKey}`);
 
   if (loading) return <div className='h-screen flex justify-center items-center'><img src={bouncingCircles} alt='bouncing circles' className='w-3xs'></img></div>;
